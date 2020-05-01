@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    HOTEL
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+         {% load static %}
+    <link type="text/css" rel="stylesheet" href='{% static "css/material-dashboard.css" %}'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body >
+
+    <div class="sidebar" data-color="purple" data-background-color="black" >
+
+      <div class="logo">
+        <a href="" class="simple-text logo-normal">
+          Hotel LTE
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item  ">
+            <a class="nav-link" href="/User/Dashboard">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item  ">
+            <a class="nav-link" href="/User/add_hotel/">
+              <i class="material-icons">home</i>
+              <p>Hotel</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/User/hotels/">
+              <i class="material-icons">home</i>
+              <p>Hotels List</p>
+            </a>
+          </li>
+
+          <li class="nav-item ">
+            <a class="nav-link" href="/User/department_add/">
+              <i class="material-icons">insert_chart</i>
+              <p>Department</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/User/department_list/">
+              <i class="material-icons">insert_chart</i>
+              <p>Department list</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/User/employee_/">
+              <i class="material-icons">supervisor_account</i>
+              <p>EMPLOYEE</p>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/User/employee_lists/">
+              <i class="material-icons">supervisor_account</i>
+              <p>EMPLOYEE LIST</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+<div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="#pablo"><h2>Admin Profile</h2></a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <form class="navbar-form">
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search..." id="search">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+
+                </button>
+              </div>
+            </form>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
+                  <i class="material-icons">dashboard</i>
+
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="#pablo" id="navbarDropdownMenuLink" >
+                  <i class="material-icons">notifications</i>
+
+
+                </a>
+
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" >
+                  <i class="material-icons">person</i>
+
+                </a>
+
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card" >
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">List of Employees</h4>
+
+                </div>
+                <div class="card-body">
+
+                    <table class="table" id="tab">
+                      <thead class=" text-primary">
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Employee Name
+                        </th>
+                        <th>
+                          Job
+                        </th>
+                        <th>
+                          Mobile Number
+                        </th>
+                        <th>
+                          Gender
+                        </th>
+                        <th>
+                          Edit
+                        </th>
+                      </thead>
+                      <tbody>
+
+                      {% for i in view %}
+                        <tr>
+                          <td>
+                            {{ i.id }}
+                          </td>
+                          <td>
+                            {{ i.first_name }}
+                          </td>
+                          <td>
+                              {{ i.job }}
+                          </td>
+                          <td>
+                              {{ i.mobile }}
+                          </td>
+                          <td>
+                           {{ i.gender }}
+                          </td>
+                          <td>
+                            <a href="/User/employee_update/{{ i.id }}" onclick="return confirm('Are you sure You need update ?')"><i class="material-icons">update</i><p></p></a>
+
+                            <a href="/User/employee_delete/{{ i.id }}" onclick="return confirm('Are you sure You need delete ?')"><i class="material-icons">delete</i></a>
+                          </td>
+
+                        </tr>
+                      {%endfor%}
+
+                      </tbody>
+                    </table>
+
+                  <table class="table" id="tabb">
+                      <thead class=" text-primary">
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Employee Name
+                        </th>
+                        <th>
+                          Job
+                        </th>
+                        <th>
+                          Mobile Number
+                        </th>
+                        <th>
+                          Gender
+                        </th>
+                        <th>
+                          Edit
+                        </th>
+                      </thead>
+                      <tbody >
+
+
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+</div>
+<script>
+    $(document).ready(function(e) {
+        $("#tabb").hide();
+    $('#search').on('change', function() {
+       d = $(this).val()
+       $("#tab").hide();
+
+        $.ajax({
+             type: 'POST',
+            url: '/User/search/',
+
+{#            contentType: 'application/json',#}
+{#            dataType:'json',#}
+
+            data: {
+             'name':$(this).val()
+           },
+            success:function() {
+
+            }
+
+        })
+            .done(function(data) {
+
+                var kk = JSON.parse(data);
+
+                console.log(kk)
+                var li='';
+                      for (var i = 0; i < kk.length; i++) {
+                          a = kk[i].pk;
+                          b = kk[i].fields.first_name;
+                          c = kk[i].fields.job;
+                          d = kk[i].fields.mobile;
+                          e = kk[i].fields.gender;
+
+                          $("#tabb").append("<tr><td>" + a + "</td><td>" + b + "</td><td>" + c + "</td><td>" + d + "</td><td>" + e + "</td><td><a href='/User/employee_update/"+a+"'><i class='material-icons'>update</i></a><p></p><a href='/User/employee_update/"+a+"' onclick='return confirm('Are you sure? You need delete')'><i class='material-icons'>delete</i></a></td></tr>")
+                      }
+                      $("#tabb").show();
+            })
+    });
+});
+</script>
+
+
+</body>
+
+</html>

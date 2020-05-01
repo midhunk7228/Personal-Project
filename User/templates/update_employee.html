@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Hotel
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href='{% static "css/material-dashboard.css" %}'>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+</head>
+
+<body>
+   <form action='/User/employee_updated/' enctype="multipart/form-data" method='post'>
+{% csrf_token %}
+
+
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+        {% for i in hotl %}
+
+
+                    <div class="row">
+                  <div class="col-md-6">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Employee Adding</h4>
+
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">First Name</label>
+
+                          <input type="text" name="name" class="form-control" value="{{i.first_name}}">
+                             <input type="hidden" class="form-control"  id="uid"   name="uid" value="{{i.id}}">
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Last Name</label>
+                          <input type="text" name="last" class="form-control" value="{{i.last_name}}">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Image</label>
+                        </div>
+                            <input type="file" name="myfile" value="{{i.pic}}" accept="image/*" >
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Hotel</label>
+                          <select class="form-control" name="hotel" id="hotl" >
+                              {% for j in sp %}
+                              <option value="{{j.id}}"{% if i.hotels.Hotel_name == j.Hotel_name %} selected="selected" {% endif %} >{{j.Hotel_name}}</option>
+                              {% endfor %}
+                          </select>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Department</label>
+                          <select class="form-control" name="depart" id="dept" >
+                              {% for k in dep %}
+                              <option value="{{k.id}}"{% if i.department.department == k.department %} selected="selected" {% endif %} >{{k.department}}</option>
+                              {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Job Position</label>
+                          <select class="form-control" name="job" value="{{i.job}}" selected="selected">
+
+                            <option value="Cook"{% if i.job == "Cook" %} selected="selected" {% endif %}>Cook</option>
+                            <option value="Executive_chef"{% if i.job == "Executive_chef" %} selected="selected" {% endif %}>Executive chef</option>
+                            <option value="Driver"{% if i.job == "Driver" %} selected="selected" {% endif %}>Driver</option>
+                            <option value="Food_Server"{% if i.job == "Food_Server" %} selected="selected" {% endif %}>Food Server</option>
+
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Work e-mail</label>
+                          <input type="text" name="work_email" class="form-control" value="{{i.work_email}}">
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Work Mobile</label>
+                          <input type="text" name="work_mobi" class="form-control" value="{{i.work_mobile}}">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Work IEMI Number</label>
+                          <input type="text" name="work_emi" class="form-control" value="{{i.work_iemi}}">
+                        </div>
+                      </div>
+                    </div>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+
+                <div class="card-body">
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Gender</label>
+                          <select class="form-control" name="gender" >
+                              <option value="Female"{% if i.gender == "Female" %} selected="selected" {% endif %}>Female</option>
+                            <option value="Male"{% if i.gender == "Male" %} selected="selected" {% endif %}>Male</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Marital status</label>
+                          <select class="form-control" name="Marital" value="{{i.martial_status}}">
+
+                              <option value="Single"{% if i.martial_status == "Single" %} selected="selected" {% endif %}>Single</option>
+                            <option value="Married"{% if i.martial_status == "Married" %} selected="selected" {% endif %}>Married</option>
+                            <option value="Widowed"{% if i.martial_status == "Widowed" %} selected="selected" {% endif %}>Widowed</option>
+                            <option value="Divorced"{% if i.martial_status == "Divorced" %} selected="selected" {% endif %}>Divorced</option>
+
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Date of birth</label>
+                          <input type ="date" class="form-control" name="date"  value="{{i.dob}}" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Address</label>
+                          <textarea class="form-control" name="address" rows="3" value="">{{i.address}}</textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Mail Id</label>
+                          <input type="text" name="mail" class="form-control" value="{{i.mail_id}}">
+
+                        </div>
+                      </div>
+                    </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Mobile</label>
+                          <input type="text" name="mobile" class="form-control" value="{{i.mobile}}">
+                        </div>
+                      </div>
+                    </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">User Name</label>
+                          <input type="text" name="username" class="form-control" value="{{i.user_name}}">
+                        </div>
+                      </div>
+                    </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Password</label>
+                          <input type="text" name="password" class="form-control" value="{{i.password}}">
+                        </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-left" name="submit">Submit</button>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor%}
+        </div>
+      </div>
+
+   <script>
+$(document).ready(function(e) {
+    $('#hotl').on('change', function() {
+       var d = $(this).val()
+        alert(d);
+
+        $.ajax({
+             type: 'POST',
+            url: '/User/empl/',
+
+{#            contentType: 'application/json',#}
+{#            dataType:'json',#}
+
+            data: {
+             'idd':$(this).val()
+           },
+            success:function() {
+                alert("create")
+            }
+
+        })
+            .done(function(data) {
+
+                var kk = JSON.parse(data);
+                alert(JSON.stringify(kk))
+                console.log(kk)
+                var li='';
+                      for (var i = 0; i < kk.length; i++) {
+                          a = kk[i].pk;
+                          b = kk[i].fields.department;
+                          li += '<option value=' + a + ' >'+ b +'</option>'
+
+                      }
+                      $('#dept').html(li)
+                var st = kk['status']
+
+            })
+    });
+});
+</script>
+
+</form>
+</body>
+
+</html>

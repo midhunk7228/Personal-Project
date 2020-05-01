@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Hotel
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href='{% static "css/material-dashboard.css" %}'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+
+
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Department Update</h4>
+
+                </div>
+                <div class="card-body">
+
+                  <form action="/User/department_updated/" method="post" enctype="multipart/form-data">
+         {% csrf_token %}
+                    <div class="form-group">
+                          <label class="bmd-label-floating">Department</label>
+
+
+                          <input type="text" class="form-control" name="depart" value="{{ dep.department }}" required="required">
+
+                        </div>
+					<div class="form-group">
+                          <label class="bmd-label-floating">Hotel</label>
+                          <select class="form-control" name="hotel" >
+                              {% for j in view %}
+
+                              <option  value="{{j.id}}" {% if dep.hotels_id_id == j.id %} selected="selected" {% endif %}>{{j.Hotel_name}}</option>
+                              {% endfor %}
+                          </select>
+                        </div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary pull-right"  value="submit">
+					</div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+              <div class="col-md-6">
+
+          </div>
+          </div>
+        </div>
+      </div>
+
+</body>
+
+</html>

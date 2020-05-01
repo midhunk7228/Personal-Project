@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Hotel
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href='{% static "css/material-dashboard.css" %}'>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+{% csrf_token %}
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="black" >
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+      <div class="logo">
+        <a href="" class="simple-text logo-normal">
+          Hotel LTE
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item active ">
+            <a class="nav-link" href="/User/Dashboard/">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item  ">
+            <a class="nav-link" href="/User/add_hotel/">
+              <i class="material-icons">home</i>
+              <p>Hotel</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/User/hotels/">
+              <i class="material-icons">home</i>
+              <p>Hotels List</p>
+            </a>
+          </li>
+
+          <li class="nav-item ">
+            <a class="nav-link" href="/User/department_add/">
+              <i class="material-icons">insert_chart</i>
+              <p>Department</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/User/department_list/">
+              <i class="material-icons">insert_chart</i>
+              <p>Department list</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/User/employee_/">
+              <i class="material-icons">supervisor_account</i>
+              <p>EMPLOYEE</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/User/employee_lists/">
+              <i class="material-icons">supervisor_account</i>
+              <p>EMPLOYEE LIST</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="#pablo"><h2>Admin Profile</h2></a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <div class="navbar-form">
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+
+                </button>
+              </div>
+            </div>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#pablo">
+                  <i class="material-icons">dashboard</i>
+
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="#pablo" id="navbarDropdownMenuLink" >
+                  <i class="material-icons">notifications</i>
+
+
+                </a>
+
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="#pablo" id="navbarDropdownProfile" >
+                  <i class="material-icons">person</i>
+
+                </a>
+
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+    <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">store</i>
+                  </div>
+                  <p class="card-category">Hotels</p>
+                  <h3 class="card-title">{{view}}
+
+                  </h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons text-danger"></i>
+                    <a href="/User/hotels/">Get More details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">insert_chart</i>
+                  </div>
+                  <p class="card-category">Employees</p>
+                  <h3 class="card-title">{{ dat }}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <!--<i class="material-icons">date_range</i>-->
+                    <a href="/User/employee_lists/">Get More details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+  </div>
+    </div>
+    </div>
+  </div>
+</body>
+
+</html>
